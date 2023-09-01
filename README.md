@@ -1,2 +1,1 @@
-# Go-Language
 # Go-Journey
