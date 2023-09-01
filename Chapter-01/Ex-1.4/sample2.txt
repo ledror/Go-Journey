@@ -1,0 +1,28 @@
+abc
+abc
+bca
+
+abc
+
+
+wow
+
+this
+is
+
+wow
+this line
+
+the same as
+
+abc
+
+this text
+
+must have many
+
+duplicates
+right?
+i think that
+this text
+is fine.
