@@ -10,7 +10,7 @@ import (
 )
 
 const (
-	width, height = 1366, 768
+	width, height = 2048, 2048
 	cells         = 100
 	xyrange       = 30.0
 	xyscale       = width / 2 / xyrange
@@ -31,6 +31,7 @@ func main() {
 		log.Fatal(http.ListenAndServe("localhost:8000", nil))
 		return
 	}
+	f = sinc
 	svg(os.Stdout)
 }
 
@@ -43,7 +44,7 @@ func handler(w http.ResponseWriter, r *http.Request) {
 	} else if params.Has("saddle") {
 		f = saddle
 	} else {
-		f = sinc
+		http.Error(w, "Bad Shape", http.StatusBadRequest)
 	}
 	w.Header().Set("Content-Type", "image/svg+xml")
 	svg(w)
