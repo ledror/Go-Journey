@@ -2,3 +2,8 @@ go 1.21.0
 
 use ./sha256
 use ./rev
+use ./dedup
+use ./charcount
+use ./graph
+use ./github
+use ./xkcd

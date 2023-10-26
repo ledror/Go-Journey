@@ -31,7 +31,7 @@ func Charcount(r io.Reader) {
 		counts[r]++
 		utflen[n]++
 	}
-	fmt.Printf("rune\tcount")
+	fmt.Printf("rune\tcount\n")
 	for c, n := range counts {
 		fmt.Printf("%q\t%d\n", c, n)
 	}
