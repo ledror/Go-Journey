@@ -1,6 +1,0 @@
-go 1.21.0
-
-use ./surface
-use ./basename
-use ./comma
-use ./netflag
