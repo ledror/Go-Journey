@@ -3,7 +3,7 @@ package main
 import (
 	"os"
 
-	"charcount"
+	"Go-Journey/Chapter-04/charcount"
 )
 
 func main() {
