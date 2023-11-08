@@ -46,6 +46,7 @@ func topoSort(m map[string][]string) []string {
 		keys = append(keys, key)
 	}
 	sort.Strings(keys)
+	fmt.Println(keys)
 	visitAll(keys)
 	return order
 }
