@@ -3,7 +3,10 @@ package main
 import (
 	"fmt"
 	"log"
+	"net/http"
 	"os"
+	"path"
+	"strings"
 	"time"
 
 	"Go-Journey/Chapter-05/links"
@@ -52,10 +55,41 @@ func breadthFirstSearch(root string) {
 
 func crawl(url string) {
 	fmt.Println(url)
+	if strings.HasPrefix(url, os.Args[1]) {
+		copyPage(url)
+	}
 	links, err := links.Extract(url)
 	if err != nil {
 		urlsChan <- urlsOk{nil, err}
 		return
 	}
 	urlsChan <- urlsOk{links, nil}
+}
+
+func copyPage(url string) {
+	resp, err := http.Get(url)
+	if err != nil {
+		log.Print(err)
+		return
+	}
+	defer resp.Body.Close()
+	if resp.StatusCode != http.StatusOK {
+		log.Printf("getting %s: %s", url, resp.Status)
+		return
+	}
+	file_name := "tmp/" + path.Base(url)
+	file, err := os.Create(file_name)
+	if err != nil {
+		log.Printf("error creating %s: %s", file_name, err)
+		return
+	}
+	_, err = file.ReadFrom(resp.Body)
+	if err != nil {
+		log.Printf("error writing to %s: %s", file_name, err)
+		return
+	}
+	if err := file.Close(); err != nil {
+		log.Printf("error closing %s: %s", file_name, err)
+		return
+	}
 }
